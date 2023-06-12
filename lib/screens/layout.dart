@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/providers/app_provider.dart';
+import 'package:souq/providers/cart_provider.dart';
+import 'package:souq/screens/cart.dart';
 import 'package:souq/screens/home.dart';
 
 const screens = [
   HomeScreen(),
+  CartScreen(),
 ];
 
 class Layout extends ConsumerWidget {
@@ -13,6 +16,7 @@ class Layout extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final app = ref.watch(appProvider);
+    final cart = ref.watch(cartProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -28,29 +32,29 @@ class Layout extends ConsumerWidget {
             onTap: (index) {
               ref.read(appProvider.notifier).toggleSelectedTab(index);
             },
-            items: const [
-              BottomNavigationBarItem(
+            items: [
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.receipt),
                 label: 'Orders',
               ),
               BottomNavigationBarItem(
                 icon: Stack(children: [
-                  Icon(Icons.shopping_cart),
+                  const Icon(Icons.shopping_cart),
                   Badge(
                     textColor: Colors.white,
                     smallSize: 15,
                     backgroundColor: Color(0xff1DE9B6),
                     alignment: FractionalOffset.topRight,
-                    label: Text('1'),
+                    label: Text('${cart.length}'),
                   ),
                 ]),
                 label: 'Cart',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
                 label: 'Profile',
               ),
