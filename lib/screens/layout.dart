@@ -38,7 +38,16 @@ class Layout extends ConsumerWidget {
                 label: 'Orders',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart),
+                icon: Stack(children: [
+                  Icon(Icons.shopping_cart),
+                  Badge(
+                    textColor: Colors.white,
+                    smallSize: 15,
+                    backgroundColor: Color(0xff1DE9B6),
+                    alignment: FractionalOffset.topRight,
+                    label: Text('1'),
+                  ),
+                ]),
                 label: 'Cart',
               ),
               BottomNavigationBarItem(
