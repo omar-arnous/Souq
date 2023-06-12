@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/models/product.dart';
 import 'package:souq/providers/product_provider.dart';
-import 'package:souq/widgets/grid_item.dart';
+import 'package:souq/widgets/product_item.dart';
 
 late Future<List<Product>> _value;
 
@@ -49,7 +49,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
             ),
-            itemBuilder: (context, i) => GridItem(products[i]),
+            itemBuilder: (context, i) => ProductItem(products[i]),
           );
         },
       ),
