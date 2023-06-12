@@ -19,22 +19,7 @@ class CartScreen extends ConsumerWidget {
     }
 
     return ListView.builder(
-      itemCount: cart.length,
-      itemBuilder: (context, i) => ListTile(
-        title: Column(
-          children: [
-            Text(cart[i].title),
-            Text('${cart[i].calcAmount()}'),
-          ],
-        ),
-        trailing: Row(
-          children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
-            Text('${cart[i].quantity}'),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-          ],
-        ),
-      ),
-    );
+        itemCount: cart.length,
+        itemBuilder: (context, i) => Text(cart[i].title));
   }
 }

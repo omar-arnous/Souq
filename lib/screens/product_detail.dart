@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:souq/models/cart.dart';
 import 'package:souq/models/product.dart';
+import 'package:souq/providers/cart_provider.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends ConsumerWidget {
   const ProductDetailScreen({
     super.key,
     required this.image,
@@ -12,7 +15,7 @@ class ProductDetailScreen extends StatelessWidget {
   final ImageProvider image;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('SouQ'),
@@ -57,7 +60,23 @@ class ProductDetailScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          ref.read(cartProvider.notifier).addToCart(
+                                Cart(
+                                  title: product.title,
+                                  price: int.parse(product.price),
+                                ),
+                              );
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Item added to cart',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                          );
+                        },
                         child: const Text('Add to Cart'),
                       ),
                     ),
