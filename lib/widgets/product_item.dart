@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:souq/screens/product_detail.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../models/product.dart';
@@ -15,7 +16,16 @@ class ProductItem extends StatelessWidget {
 
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ProductDetailScreen(
+                image: image,
+                product: product,
+              ),
+            ),
+          );
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
