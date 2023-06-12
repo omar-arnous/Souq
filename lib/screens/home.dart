@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/models/product.dart';
 import 'package:souq/providers/product_provider.dart';
+import 'package:souq/widgets/grid_item.dart';
 
 late Future<List<Product>> _value;
 
@@ -27,7 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       margin: const EdgeInsets.all(20),
       child: FutureBuilder(
         future: _value,
-        builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(
@@ -35,24 +36,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             );
           }
-          // return Column(
-          //   children: [
-          //     Text(
-          //       'Products',
-          //       style: Theme.of(context).textTheme.titleLarge,
-          //     ),
-          //     GridView.builder(
-          //       itemCount: products.length,
-          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //         crossAxisCount: 2,
-          //         childAspectRatio: 3 / 2,
-          //         crossAxisSpacing: 20,
-          //         mainAxisExtent: 20,
-          //       ),
-          //       itemBuilder: (context, i) => Text(products[i].title),
-          //     ),
-          //   ],
-          // );
+          if (products.isEmpty) {
+            return const Center(
+              child: Text('No Products Available'),
+            );
+          }
+          return GridView.builder(
+            itemCount: products.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 2 / 3,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+            itemBuilder: (context, i) => GridItem(products[i]),
+          );
         },
       ),
     );

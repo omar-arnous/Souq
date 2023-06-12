@@ -30,3 +30,4 @@ flutter:
 
   assets:
     - assets/souq.svg
+    - assets/no-image-placeholder.webp

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:souq/models/product.dart';
 
 class ApiClient {
   static late Dio _dio;

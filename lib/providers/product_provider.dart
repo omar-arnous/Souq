@@ -11,7 +11,6 @@ class ProductsNotifier extends StateNotifier<List<Product>> {
     final products = response.data['products'];
     for (final product in products) {
       final productItem = Product.fromJson(product);
-      print(productItem);
       state = [
         ...state,
         productItem,
