@@ -55,17 +55,25 @@ class SouqTheme {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xff252525),
       ),
-      elevatedButtonTheme: const ElevatedButtonThemeData(
+      elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Color(0xff1DE9B6)),
-          foregroundColor: MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          backgroundColor: const MaterialStatePropertyAll(Color(0xff1DE9B6)),
+          foregroundColor: const MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+            return RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10));
+          }),
         ),
       ),
-      outlinedButtonTheme: const OutlinedButtonThemeData(
+      outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          overlayColor: MaterialStatePropertyAll(Color(0xff1DE9B6)),
-          backgroundColor: MaterialStatePropertyAll(Color(0xff252525)),
-          foregroundColor: MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          overlayColor: const MaterialStatePropertyAll(Color(0xff1DE9B6)),
+          backgroundColor: const MaterialStatePropertyAll(Color(0xff252525)),
+          foregroundColor: const MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+            return RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10));
+          }),
         ),
       ),
       cardTheme: CardTheme(

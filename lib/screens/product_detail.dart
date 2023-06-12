@@ -13,17 +13,63 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('SouQ'),
+        centerTitle: true,
+      ),
+      body: Container(
         margin: const EdgeInsets.all(8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Hero(
               tag: product.id,
-              child: Image(
-                image: image,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image(
+                  image: image,
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
+                ),
               ),
             ),
+            const SizedBox(height: 20),
+            Text(
+              product.title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Description:',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              product.description,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Expanded(
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Add to Cart'),
+                      ),
+                    ),
+                    const SizedBox(width: 24),
+                    Text(
+                      'SP ${product.price}',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
