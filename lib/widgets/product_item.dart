@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:souq/screens/product_detail.dart';
+import 'package:souq/utils/utilities.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../models/product.dart';
@@ -11,8 +12,10 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final util = Utilities();
     final NetworkImage image =
         NetworkImage('http://192.168.1.109:4000${product.image}');
+    final price = util.formatCurrency(int.parse(product.price));
 
     return Card(
       child: InkWell(
@@ -52,7 +55,7 @@ class ProductItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Text(
-                'SP ${product.price}',
+                'SP $price',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
             ),

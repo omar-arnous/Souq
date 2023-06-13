@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/providers/cart_provider.dart';
 
 import '../models/cart.dart';
+import '../utils/utilities.dart';
 
 class CartItem extends ConsumerWidget {
   const CartItem(this.cart, {super.key});
@@ -10,6 +11,8 @@ class CartItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final util = Utilities();
+    final amount = util.formatCurrency(cart.calcAmount());
     return Card(
       margin: const EdgeInsets.all(15),
       child: Padding(
@@ -25,7 +28,7 @@ class CartItem extends ConsumerWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
-                  '${cart.calcAmount()} SP',
+                  '$amount SP',
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ],

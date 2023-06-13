@@ -47,8 +47,8 @@ class Layout extends ConsumerWidget {
                   Badge(
                     textColor: Colors.white,
                     smallSize: 15,
-                    backgroundColor: Color(0xff1DE9B6),
-                    alignment: FractionalOffset.topRight,
+                    backgroundColor: const Color(0xff1DE9B6),
+                    alignment: Alignment.topRight,
                     label: Text('${cart.length}'),
                   ),
                 ]),
