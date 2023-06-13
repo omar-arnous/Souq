@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/providers/cart_provider.dart';
+import 'package:souq/widgets/cart_item.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
@@ -19,7 +20,10 @@ class CartScreen extends ConsumerWidget {
     }
 
     return ListView.builder(
-        itemCount: cart.length,
-        itemBuilder: (context, i) => Text(cart[i].title));
+      itemCount: cart.length,
+      itemBuilder: (context, i) => CartItem(
+        cart[i],
+      ),
+    );
   }
 }
