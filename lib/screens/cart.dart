@@ -3,13 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/providers/cart_provider.dart';
 import 'package:souq/widgets/cart_item.dart';
 
+import '../utils/utilities.dart';
+
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final util = Utilities();
     final cart = ref.watch(cartProvider);
     final total = ref.read(cartProvider.notifier).calcTotal();
+    final formatedTotal = util.formatCurrency(total);
 
     if (cart.isEmpty) {
       return Center(
@@ -33,7 +37,7 @@ class CartScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text('Total: '),
-              Text('$total SP'),
+              Text('$formatedTotal SP'),
             ],
           ),
         ),
@@ -43,6 +47,14 @@ class CartScreen extends ConsumerWidget {
             itemBuilder: (context, i) => CartItem(
               cart[i],
             ),
+          ),
+        ),
+        Align(
+          alignment: FractionalOffset.bottomCenter,
+          child: ElevatedButton.icon(
+            onPressed: () {},
+            icon: const Icon(Icons.payment_outlined),
+            label: const Text('CHECKOUT'),
           ),
         ),
       ],
