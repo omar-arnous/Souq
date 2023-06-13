@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/cart.dart';
+import '../models/order.dart';
+import '../services/api_client.dart';
 
 class CartNotifier extends StateNotifier<List<Cart>> {
   CartNotifier() : super([]);
@@ -56,6 +58,10 @@ class CartNotifier extends StateNotifier<List<Cart>> {
     }
 
     return total;
+  }
+
+  Future makeOrder(Order order) async {
+    await ApiClient.makeOrder(order);
   }
 }
 

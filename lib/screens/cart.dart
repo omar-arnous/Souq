@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:souq/models/order.dart';
 import 'package:souq/providers/cart_provider.dart';
 import 'package:souq/widgets/cart_item.dart';
 
@@ -52,7 +53,10 @@ class CartScreen extends ConsumerWidget {
         Align(
           alignment: FractionalOffset.bottomCenter,
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              final order = Order(items: cart, total: total);
+              ref.read(cartProvider.notifier).makeOrder(order);
+            },
             icon: const Icon(Icons.payment_outlined),
             label: const Text('CHECKOUT'),
           ),
