@@ -4,9 +4,11 @@ import 'package:souq/providers/app_provider.dart';
 import 'package:souq/providers/cart_provider.dart';
 import 'package:souq/screens/cart.dart';
 import 'package:souq/screens/home.dart';
+import 'package:souq/screens/orders.dart';
 
 const screens = [
   HomeScreen(),
+  OrdersScreen(),
   CartScreen(),
 ];
 
@@ -22,7 +24,7 @@ class Layout extends ConsumerWidget {
         centerTitle: true,
         title: const Text('SouQ'),
       ),
-      body: screens[app["selectedTab"]!],
+      body: IndexedStack(index: app["selectedTab"]!, children: screens),
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(15),
         child: ClipRRect(
