@@ -14,8 +14,18 @@ class CartNotifier extends StateNotifier<List<Cart>> {
 
   addOne(Cart item) {
     final itemIndex = state.indexOf(item);
+    final currentItem = state[itemIndex];
+    final modifiedItem = Cart(
+      title: currentItem.title,
+      price: currentItem.price,
+      quantity: currentItem.quantity + 1,
+    );
+    final currentState = state.where((e) => e != item);
 
-    state[itemIndex].quantity + 1;
+    state = [
+      ...currentState,
+      modifiedItem,
+    ];
   }
 
   removeOne(Cart item) {
@@ -23,9 +33,29 @@ class CartNotifier extends StateNotifier<List<Cart>> {
 
     if (state[itemIndex].quantity == 1) {
       state = state.where((e) => e != item).toList();
+    } else {
+      final currentItem = state[itemIndex];
+      final modifiedItem = Cart(
+        title: currentItem.title,
+        price: currentItem.price,
+        quantity: currentItem.quantity - 1,
+      );
+      final currentState = state.where((e) => e != item);
+
+      state = [
+        ...currentState,
+        modifiedItem,
+      ];
+    }
+  }
+
+  int calcTotal() {
+    int total = 0;
+    for (final item in state) {
+      total += item.calcAmount();
     }
 
-    state[itemIndex].quantity - 1;
+    return total;
   }
 }
 

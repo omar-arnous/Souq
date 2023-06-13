@@ -34,7 +34,8 @@ class CartItem extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: () => ref.read(cartProvider.notifier).addOne(cart),
+                  onPressed: () =>
+                      ref.read(cartProvider.notifier).removeOne(cart),
                   icon: const Icon(
                     Icons.remove,
                     color: Color(0xffF1F1F1),
@@ -45,8 +46,7 @@ class CartItem extends ConsumerWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 IconButton(
-                  onPressed: () =>
-                      ref.read(cartProvider.notifier).removeOne(cart),
+                  onPressed: () => ref.read(cartProvider.notifier).addOne(cart),
                   icon: const Icon(
                     Icons.add,
                     color: Color(0xffF1F1F1),

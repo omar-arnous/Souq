@@ -9,6 +9,7 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cart = ref.watch(cartProvider);
+    final total = ref.read(cartProvider.notifier).calcTotal();
 
     if (cart.isEmpty) {
       return Center(
@@ -19,11 +20,32 @@ class CartScreen extends ConsumerWidget {
       );
     }
 
-    return ListView.builder(
-      itemCount: cart.length,
-      itemBuilder: (context, i) => CartItem(
-        cart[i],
-      ),
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: const Color(0xffE3E3E3),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Total: '),
+              Text('$total SP'),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: cart.length,
+            itemBuilder: (context, i) => CartItem(
+              cart[i],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
