@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:souq/services/cahce_storage.dart';
 
 import '../models/order.dart';
 
@@ -10,9 +9,8 @@ class ApiClient {
   static Dio init() {
     final options =
         BaseOptions(baseUrl: 'http://192.168.1.109:4000/api/v1', headers: {
-      'Authorization':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZlODE0Yzg4MDYwMjU3NmY2OTNjZDkiLCJpYXQiOjE2ODQ5OTM2NjQsImV4cCI6MTY4NTQyNTY2NH0.2llZ0yri8MkJoOuHosYAPxsETlMGNm8Sl3POP1nE4jg',
-      'uid': '646e814c880602576f693cd9',
+      'Authorization': CacheStorage.getToken(),
+      'uid': CacheStorage.getid(),
     });
     _dio = Dio(options);
     return _dio;
@@ -25,5 +23,15 @@ class ApiClient {
 
   static Future<void> makeOrder(Order order) async {
     await _dio.post('/orders', data: order);
+  }
+
+  static Future<Response> login(json) async {
+    final response = await _dio.post('/login', data: json);
+    return response;
+  }
+
+  static Future<Response> signup(json) async {
+    final response = await _dio.post('/signup', data: json);
+    return response;
   }
 }

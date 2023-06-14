@@ -6,8 +6,8 @@ import 'package:souq/services/cahce_storage.dart';
 import 'package:souq/theme.dart';
 
 void main() {
-  ApiClient.init();
   CacheStorage.init();
+  ApiClient.init();
   runApp(
     const ProviderScope(
       child: Souq(),
