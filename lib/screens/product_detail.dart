@@ -7,15 +7,14 @@ import 'package:souq/providers/cart_provider.dart';
 class ProductDetailScreen extends ConsumerWidget {
   const ProductDetailScreen({
     super.key,
-    required this.image,
-    required this.product,
+    required this.data,
   });
-
-  final Product product;
-  final ImageProvider image;
+  final data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final Product product = data['product'];
+    final ImageProvider image = data['image'];
     return Scaffold(
       appBar: AppBar(
         title: const Text('SouQ'),
