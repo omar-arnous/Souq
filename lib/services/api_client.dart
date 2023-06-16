@@ -9,8 +9,8 @@ class ApiClient {
   static Dio init() {
     final options =
         BaseOptions(baseUrl: 'http://192.168.1.109:4000/api/v1', headers: {
-      'Authorization': CacheStorage.getToken(),
-      'uid': CacheStorage.getid(),
+      // 'Authorization': CacheStorage.getCache(),
+      // 'uid': CacheStorage.getid(),
     });
     _dio = Dio(options);
     return _dio;

@@ -5,8 +5,9 @@ import 'package:souq/services/api_client.dart';
 import 'package:souq/services/cahce_storage.dart';
 import 'package:souq/theme.dart';
 
-void main() {
-  CacheStorage.init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheStorage.init();
   ApiClient.init();
   runApp(
     const ProviderScope(

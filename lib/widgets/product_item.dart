@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:souq/screens/product_detail.dart';
 import 'package:souq/utils/utilities.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -24,16 +23,6 @@ class ProductItem extends StatelessWidget {
           "image": image,
           "product": product,
         }),
-        // onTap: () {
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (context) => ProductDetailScreen(
-        //         image: image,
-        //         product: product,
-        //       ),
-        //     ),
-        //   );
-        // },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -84,6 +84,16 @@ class SouqTheme {
         clipBehavior: Clip.hardEdge,
         elevation: 2,
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: TextStyle(
+          color: Color(0xff333333),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xff1DE9B6),
+          ),
+        ),
+      ),
       textTheme: textTheme,
     );
   }

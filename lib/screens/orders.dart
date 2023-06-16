@@ -6,8 +6,8 @@ class OrdersScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: Text('Orders Screen'),
+    return const Center(
+      child: Text('No Orders Available'),
     );
   }
 }
