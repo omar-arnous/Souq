@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:souq/models/product.dart';
 import 'package:souq/screens/layout.dart';
+import 'package:souq/screens/login.dart';
 import 'package:souq/screens/product_detail.dart';
 
 class Routes {
@@ -22,7 +21,11 @@ class Routes {
           ),
         ],
       ),
-      // GoRoute(name: 'login', path: '/login', builder: (context, state) => ,),
+      GoRoute(
+        name: 'login',
+        path: '/login',
+        builder: (context, state) => const LoginScreen(),
+      ),
     ],
   );
 

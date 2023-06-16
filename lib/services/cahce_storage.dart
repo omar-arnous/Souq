@@ -12,4 +12,6 @@ class CacheStorage {
       await _prefs.setString(key, token);
 
   static String getCache(String key) => _prefs.getString(key) ?? "";
+
+  static Future<bool> removeCache(String key) => _prefs.remove(key);
 }

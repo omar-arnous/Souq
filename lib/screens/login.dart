@@ -23,77 +23,79 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Login',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 36),
-            Form(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          'E-mail',
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 48),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Login',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 36),
+              Form(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          label: Text(
+                            'E-mail',
+                          ),
+                          prefixIcon: Icon(Icons.email),
                         ),
-                        prefixIcon: Icon(Icons.email),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        cursorColor: const Color(0xff1DE9B6),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
-                      cursorColor: const Color(0xff1DE9B6),
-                    ),
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        label: const Text(
-                          'Password',
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock),
+                          label: const Text(
+                            'Password',
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                secureText = !secureText;
+                              });
+                            },
+                            icon: secureText
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off),
+                          ),
                         ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              secureText = !secureText;
-                            });
-                          },
-                          icon: secureText
-                              ? const Icon(Icons.visibility)
-                              : const Icon(Icons.visibility_off),
-                        ),
+                        cursorColor: const Color(0xff1DE9B6),
+                        obscureText: secureText,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        textInputAction: TextInputAction.done,
                       ),
-                      cursorColor: const Color(0xff1DE9B6),
-                      obscureText: secureText,
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      textInputAction: TextInputAction.done,
-                    ),
-                    const SizedBox(height: 36),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Log In'),
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'Don\'t have an Account?',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    const SizedBox(height: 24),
-                    OutlinedButton(
-                      onPressed: () => context.go('/signup'),
-                      child: const Text('Sign Up'),
-                    ),
-                  ],
+                      const SizedBox(height: 36),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Log In'),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Don\'t have an Account?',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 24),
+                      OutlinedButton(
+                        onPressed: () => context.go('/signup'),
+                        child: const Text('Sign Up'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

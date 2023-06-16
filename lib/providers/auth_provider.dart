@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:souq/services/api_client.dart';
+import 'package:souq/services/cahce_storage.dart';
 
 import '../models/user.dart';
 
@@ -17,6 +18,10 @@ class AuthNotifier extends StateNotifier<Object> {
     final response = await ApiClient.login(userCredentials);
     print(response);
     return response;
+  }
+
+  logout() async {
+    await CacheStorage.removeCache('token');
   }
 }
 
