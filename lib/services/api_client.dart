@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:souq/services/cahce_storage.dart';
+import 'package:souq/utils/constants.dart';
 
 import '../models/order.dart';
 
@@ -9,8 +10,8 @@ class ApiClient {
   static Dio init() {
     final options =
         BaseOptions(baseUrl: 'http://192.168.1.109:4000/api/v1', headers: {
-      // 'Authorization': CacheStorage.getCache(),
-      // 'uid': CacheStorage.getid(),
+      'Authorization': CacheStorage.getCache(kToken),
+      'uid': CacheStorage.getCache(kId),
     });
     _dio = Dio(options);
     return _dio;
