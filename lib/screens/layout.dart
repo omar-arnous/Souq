@@ -4,14 +4,14 @@ import 'package:souq/providers/app_provider.dart';
 import 'package:souq/providers/cart_provider.dart';
 import 'package:souq/screens/cart.dart';
 import 'package:souq/screens/home.dart';
-import 'package:souq/screens/login.dart';
 import 'package:souq/screens/orders.dart';
+import 'package:souq/screens/profile.dart';
 
 const screens = [
   HomeScreen(),
   OrdersScreen(),
   CartScreen(),
-  LoginScreen(),
+  ProfileScreen(),
 ];
 
 class Layout extends ConsumerWidget {
