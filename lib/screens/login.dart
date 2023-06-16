@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:souq/providers/auth_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -23,20 +24,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void submit() async {
+      final response = await ref.read(authProvider.notifier).login(
+            _emailController.text,
+            _passwordController.text,
+          );
+      if (response) {
+        context.go('/');
+      }
+    }
+
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 48),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Login',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 36),
-              Form(
-                child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Login',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 36),
+                Form(
                   child: Column(
                     children: [
                       TextFormField(
@@ -77,7 +88,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       const SizedBox(height: 36),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: submit,
                         child: const Text('Log In'),
                       ),
                       const SizedBox(height: 24),
@@ -93,8 +104,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

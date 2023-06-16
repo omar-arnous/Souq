@@ -7,10 +7,16 @@ import '../models/user.dart';
 class AuthNotifier extends StateNotifier<Object> {
   AuthNotifier() : super({});
 
-  Future<Object> login(User user) async {
-    final response = await ApiClient.login(user);
-    print(response);
-    return response;
+  Future<bool> login(String email, String pass) async {
+    User user = User(email: email, pass: pass);
+    final object = user.login();
+    try {
+      final response = await ApiClient.login(object);
+      print(response);
+      return true;
+    } catch (err) {
+      return false;
+    }
   }
 
   Future<Object> signup(User user) async {

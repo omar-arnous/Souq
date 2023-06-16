@@ -1,64 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:souq/utils/constants.dart';
 
 class SouqTheme {
   static TextTheme textTheme = TextTheme(
     titleLarge: GoogleFonts.poppins(
       fontSize: 24,
-      color: const Color(0xff252525),
+      color: kBlack,
     ),
     titleMedium: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w700,
-      color: const Color(0xff252525),
+      color: kBlack,
     ),
     displayLarge: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w700,
-      color: const Color(0xff333333),
+      color: kGray,
     ),
     bodyLarge: GoogleFonts.poppins(
       fontSize: 20,
-      color: const Color(0xfff1f1f1),
+      color: kWhite,
     ),
     bodyMedium: GoogleFonts.poppins(
       fontSize: 22,
-      color: const Color(0xff252525),
+      color: kBlack,
     ),
     bodySmall: GoogleFonts.poppins(
       fontSize: 16,
-      color: const Color(0xfff1f1f1),
+      color: kWhite,
     ),
     labelLarge: GoogleFonts.poppins(
       fontSize: 18,
       fontWeight: FontWeight.w500,
-      color: const Color(0xff333333),
+      color: kGray,
     ),
     labelMedium: GoogleFonts.poppins(
       fontSize: 16,
-      color: const Color(0xff1DE9B6),
+      color: kPrimary,
     ),
   );
 
   static ThemeData theme() {
     return ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: kWhite,
       brightness: Brightness.light,
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xff333333),
+        backgroundColor: kWhite,
+        foregroundColor: kGray,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Color(0xff1DE9B6),
-        unselectedItemColor: Color(0xffe1e1e1),
+        selectedItemColor: kPrimary,
+        unselectedItemColor: kWhite,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xff252525),
+        backgroundColor: kBlack,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: const MaterialStatePropertyAll(Color(0xff1DE9B6)),
-          foregroundColor: const MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          backgroundColor: const MaterialStatePropertyAll(kPrimary),
+          foregroundColor: const MaterialStatePropertyAll(kWhite),
           shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
             return RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10));
@@ -67,9 +68,9 @@ class SouqTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          overlayColor: const MaterialStatePropertyAll(Color(0xff1DE9B6)),
-          backgroundColor: const MaterialStatePropertyAll(Color(0xff252525)),
-          foregroundColor: const MaterialStatePropertyAll(Color(0xfff1f1f1)),
+          overlayColor: const MaterialStatePropertyAll(kPrimary),
+          backgroundColor: const MaterialStatePropertyAll(kBlack),
+          foregroundColor: const MaterialStatePropertyAll(kWhite),
           shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
             return RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10));
@@ -77,7 +78,7 @@ class SouqTheme {
         ),
       ),
       cardTheme: CardTheme(
-        color: const Color(0xff252525),
+        color: kBlack,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -86,11 +87,11 @@ class SouqTheme {
       ),
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(
-          color: Color(0xff333333),
+          color: kGray,
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Color(0xff1DE9B6),
+            color: kPrimary,
           ),
         ),
       ),
