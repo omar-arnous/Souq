@@ -13,18 +13,39 @@ class AuthNotifier extends StateNotifier<Object> {
     final object = user.login();
     try {
       final response = await ApiClient.login(object);
-      print(response);
+      final data = response.data['existingUser'];
+      CacheStorage.setCache(kToken, data['token']);
+      CacheStorage.setCache(kName, data['name']);
+      CacheStorage.setCache(kId, data['_id']);
       return true;
     } catch (err) {
       return false;
     }
   }
 
-  Future<Object> signup(User user) async {
+  Future<bool> signup(
+    String name,
+    String email,
+    String confirmEmail,
+    String pass,
+  ) async {
+    User user = User(
+      name: name,
+      email: email,
+      confirmEmail: confirmEmail,
+      pass: pass,
+    );
     final userCredentials = user.signin();
-    final response = await ApiClient.login(userCredentials);
-    print(response);
-    return response;
+    try {
+      final response = await ApiClient.signup(userCredentials);
+      final data = response.data['enteredData'];
+      CacheStorage.setCache(kToken, data['token']);
+      CacheStorage.setCache(kName, data['name']);
+      CacheStorage.setCache(kId, data['_id']);
+      return true;
+    } catch (err) {
+      return false;
+    }
   }
 
   logout() async {

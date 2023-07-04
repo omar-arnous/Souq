@@ -3,21 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:souq/providers/auth_provider.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends ConsumerStatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignupScreenState extends ConsumerState<SignupScreen> {
+  final _namrController = TextEditingController();
   final _emailController = TextEditingController();
+  final _confirmEmailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool secureText = true;
 
   @override
   void dispose() {
+    _namrController.dispose();
     _emailController.dispose();
+    _confirmEmailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -25,8 +29,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     void submit() async {
-      final response = await ref.read(authProvider.notifier).login(
+      final response = await ref.read(authProvider.notifier).signup(
+            _namrController.text,
             _emailController.text,
+            _confirmEmailController.text,
             _passwordController.text,
           );
       if (response) {
@@ -43,7 +49,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Login',
+                  'SignUp',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 36),
@@ -52,10 +58,36 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     children: [
                       TextFormField(
                         style: Theme.of(context).textTheme.labelLarge,
+                        controller: _namrController,
+                        decoration: const InputDecoration(
+                          label: Text(
+                            'UserName',
+                          ),
+                          prefixIcon: Icon(Icons.account_box_rounded),
+                        ),
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.next,
+                        cursorColor: const Color(0xff1DE9B6),
+                      ),
+                      TextFormField(
+                        style: Theme.of(context).textTheme.labelLarge,
                         controller: _emailController,
                         decoration: const InputDecoration(
                           label: Text(
                             'E-mail',
+                          ),
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        cursorColor: const Color(0xff1DE9B6),
+                      ),
+                      TextFormField(
+                        style: Theme.of(context).textTheme.labelLarge,
+                        controller: _confirmEmailController,
+                        decoration: const InputDecoration(
+                          label: Text(
+                            'confirm E-mail',
                           ),
                           prefixIcon: Icon(Icons.email),
                         ),
@@ -91,16 +123,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       const SizedBox(height: 36),
                       ElevatedButton(
                         onPressed: submit,
-                        child: const Text('Log In'),
-                      ),
-                      const SizedBox(height: 24),
-                      Text(
-                        'Don\'t have an Account?',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(height: 24),
-                      OutlinedButton(
-                        onPressed: () => context.go('/signup'),
                         child: const Text('Sign Up'),
                       ),
                     ],
