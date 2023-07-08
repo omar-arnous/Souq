@@ -7,7 +7,8 @@ an E-commerce app built using Flutter framework and external libraries such as "
 
 1. Login Screen
 <br />
-![photo_2023-07-08_12-48-33](https://github.com/omar-arnous/Souq/assets/61987128/f185dd76-becd-4146-8412-cdbc3ef6e4be)
+
+![photo_2023-07-08_12-48-33](https://github.com/omar-arnous/Souq/assets/61987128/a42efeef-f3af-48c7-aa62-1a4ba2d07df2)
 
 2. Home Screen
 <br />
