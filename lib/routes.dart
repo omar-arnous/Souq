@@ -2,12 +2,18 @@ import 'package:go_router/go_router.dart';
 import 'package:souq/screens/layout.dart';
 import 'package:souq/screens/login.dart';
 import 'package:souq/screens/signup.dart';
+import 'package:souq/screens/splash.dart';
 import 'package:souq/screens/product_detail.dart';
 
 class Routes {
   final _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        name: 'splash',
+        path: '/splash',
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(
         name: 'home',
         path: '/',
