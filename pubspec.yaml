@@ -31,5 +31,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/souq.svg
-    - assets/no-image-placeholder.webp
+    - assets/souq.png
