@@ -14,9 +14,9 @@ class AuthNotifier extends StateNotifier<Object> {
     try {
       final response = await ApiClient.login(object);
       final data = response.data['existingUser'];
-      CacheStorage.setCache(kToken, data['token']);
+      final token = response.data['token'];
+      CacheStorage.setCache(kToken, token);
       CacheStorage.setCache(kName, data['name']);
-      CacheStorage.setCache(kId, data['_id']);
       return true;
     } catch (err) {
       return false;
@@ -38,7 +38,7 @@ class AuthNotifier extends StateNotifier<Object> {
     final userCredentials = user.signin();
     try {
       final response = await ApiClient.signup(userCredentials);
-      final data = response.data['enteredData'];
+      final data = response.data['signedUser'];
       CacheStorage.setCache(kToken, data['token']);
       CacheStorage.setCache(kName, data['name']);
       CacheStorage.setCache(kId, data['_id']);

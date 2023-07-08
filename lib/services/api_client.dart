@@ -8,8 +8,7 @@ class ApiClient {
   static late Dio _dio;
 
   static Dio init() {
-    final options =
-        BaseOptions(baseUrl: 'http://192.168.1.109:4000/api/v1', headers: {
+    final options = BaseOptions(baseUrl: '$kUrl/api/v1', headers: {
       'Authorization': CacheStorage.getCache(kToken),
       'uid': CacheStorage.getCache(kId),
     });

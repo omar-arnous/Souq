@@ -10,3 +10,6 @@ const Color kWhite = Color(0xffF1F1F1);
 const String kToken = 'token';
 const String kId = 'id';
 const String kName = 'name';
+
+// api url
+const String kUrl = "http://192.168.1.111:4000";
